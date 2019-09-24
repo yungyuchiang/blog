@@ -711,11 +711,13 @@ canvas_sphere: false
 # size: The width of the ribbon.
 # alpha: The transparency of the ribbon.
 # zIndex: The display level of the ribbon.
+
 canvas_ribbon:
-  enable: false
-  size: 300
+  enable: true
+  size: 90
   alpha: 0.6
   zIndex: -1
+
 
 # Script Vendors.
 # Set a CDN address for the vendor you want to customize.
@@ -793,7 +795,7 @@ vendors:
 
   # Internal version: 1.0.0
   # https://github.com/zproo/canvas-ribbon
-  canvas_ribbon:
+  canvas_ribbon: 
 
   # Internal version: 3.3.0
   # https://github.com/ethantw/Han

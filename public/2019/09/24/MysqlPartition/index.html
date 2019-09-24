@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="Mysql 分区查看是否支持分区12SHOW PLUGINS ;-- 如果支持分区，partition会显示为active  分区介绍目前mysql分区可以分为一下几种类型  RANGE分区：基于一个给定的连续区间范围，RANGE主要是基于整数的分区，对于非整形的字段需要利用表达式将其转换成整形。  LIST分区：是基于列出的枚举值列表进行分区。  COLUMNS分区：可以无需通过表达式进行转换直">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://www.yungyuweb.xyz/blog/2019/09/19/hello-world/index.html">
+<meta property="og:title" content="Mysql 分区">
+<meta property="og:url" content="http://www.yungyuweb.xyz/blog/2019/09/24/MysqlPartition/index.html">
 <meta property="og:site_name" content="YungyuBlog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="Mysql 分区查看是否支持分区12SHOW PLUGINS ;-- 如果支持分区，partition会显示为active  分区介绍目前mysql分区可以分为一下几种类型  RANGE分区：基于一个给定的连续区间范围，RANGE主要是基于整数的分区，对于非整形的字段需要利用表达式将其转换成整形。  LIST分区：是基于列出的枚举值列表进行分区。  COLUMNS分区：可以无需通过表达式进行转换直">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-19T10:30:05.779Z">
+<meta property="og:updated_time" content="2019-09-23T06:42:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="Mysql 分区">
+<meta name="twitter:description" content="Mysql 分区查看是否支持分区12SHOW PLUGINS ;-- 如果支持分区，partition会显示为active  分区介绍目前mysql分区可以分为一下几种类型  RANGE分区：基于一个给定的连续区间范围，RANGE主要是基于整数的分区，对于非整形的字段需要利用表达式将其转换成整形。  LIST分区：是基于列出的枚举值列表进行分区。  COLUMNS分区：可以无需通过表达式进行转换直">
 
 
 
@@ -97,7 +97,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/blog/',
-    scheme: 'Gemini',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://www.yungyuweb.xyz/blog/2019/09/19/hello-world/">
+  <link rel="canonical" href="http://www.yungyuweb.xyz/blog/2019/09/24/MysqlPartition/">
 
 
 
 
 
-  <title>Hello World | YungyuBlog</title>
+  <title>Mysql 分区 | YungyuBlog</title>
   
 
 
@@ -264,7 +264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yungyuweb.xyz/blog/blog/2019/09/19/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://www.yungyuweb.xyz/blog/blog/2019/09/24/MysqlPartition/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Yungyu">
@@ -281,7 +281,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">Mysql 分区</h1>
         
 
         <div class="post-meta">
@@ -293,8 +293,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-19T10:30:05+00:00">
-                2019-09-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-24T15:16:42+08:00">
+                2019-09-24
               </time>
             
 
@@ -312,8 +312,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/blog/2019/09/19/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/blog/2019/09/19/hello-world/" itemprop="commentsCount"></span>
+                <a href="/blog/2019/09/24/MysqlPartition/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/blog/2019/09/24/MysqlPartition/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -341,20 +341,35 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <h2 id="Mysql-分区"><a href="#Mysql-分区" class="headerlink" title="Mysql 分区"></a>Mysql 分区</h2><h3 id="查看是否支持分区"><a href="#查看是否支持分区" class="headerlink" title="查看是否支持分区"></a>查看是否支持分区</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SHOW PLUGINS ;</span><br><span class="line">-- 如果支持分区，partition会显示为active</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<h3 id="分区介绍"><a href="#分区介绍" class="headerlink" title="分区介绍"></a>分区介绍</h3><p>目前mysql分区可以分为一下几种类型</p>
+<ol>
+<li><p>RANGE分区：基于一个给定的连续区间范围，RANGE主要是基于整数的分区，对于非整形的字段需要利用表达式将其转换成整形。</p>
+</li>
+<li><p>LIST分区：是基于列出的枚举值列表进行分区。</p>
+</li>
+<li><p>COLUMNS分区：可以无需通过表达式进行转换直接对非整形字段进行分区，同时COLUMNS分区还支持多个字段组合分区，只有RANGELIST存在COLUMNS分区，COLUMNS是RANGE和LIST分区的升级。</p>
+</li>
+<li><p>HASH分区：基于给定的分区个数，将数据分配到不同的分区，HASH分区只能针对整数进行HASH，对于非整形的字段只能通过表达式将其转换成整数。</p>
+</li>
+<li><p>KEY分区：支持除text和BLOB之外的所有数据类型的分区,key分区可以直接基于字段做分区无需转换成整数。其中hash分区不支持多列分区，key分区支持多列分区</p>
+</li>
+</ol>
+<h3 id="删除添加分区表"><a href="#删除添加分区表" class="headerlink" title="删除添加分区表"></a>删除添加分区表</h3><ol>
+<li><p>移除分区表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE tablename</span><br><span class="line">REMOVE PARTITIONING ;</span><br><span class="line">-- 使用remove移除分区是仅仅移除分区的定义，并不会删除数据和drop PARTITION不一样，后者会连同数据一起删除</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>对已经存在记录的表创建分区，以增加range分区为例，和创建表建分区的语法一样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE `tb_partition`.`tb_varchar` </span><br><span class="line">PARTITION BY RANGE(id) PARTITIONS 3( PARTITION part0 VALUES LESS THAN (5000),  PARTITION part1 VALUES LESS THAN (10000),  PARTITION part2 VALUES LESS THAN (MAXVALUE)) ;</span><br><span class="line">-- 对已有的表创建分区之后，数据会按照分区的定义分布到各个分区文件当中</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建多列分区, hash分区为了分区数据均衡，可以分区数量采用2的n次方来分区</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE `tb_partition`.`tb_varchar` PARITION BY KEYS(cp1,cp2,cp3) PARITIONS 8</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+</li>
+</ol>
+<h3 id="子分区"><a href="#子分区" class="headerlink" title="子分区"></a>子分区</h3><p>子分区其实是对每个分区表的每个分区进行再次分隔，目前只有RANGE和LIST分区的表可以再进行子分区，子分区只能是HASH或者KEY分区。子分区可以将原本的数据进行再次的分区划分。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE tb_sub (id INT, purchased DATE)</span><br><span class="line">    PARTITION BY RANGE( YEAR(purchased) )</span><br><span class="line">    SUBPARTITION BY HASH( TO_DAYS(purchased) )</span><br><span class="line">    SUBPARTITIONS 2 (</span><br><span class="line">        PARTITION p0 VALUES LESS THAN (1990),</span><br><span class="line">        PARTITION p1 VALUES LESS THAN (2000),</span><br><span class="line">        PARTITION p2 VALUES LESS THAN MAXVALUE</span><br><span class="line">    );</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -378,14 +393,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/blog/2019/09/24/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/blog/2019/09/23/Flux/" rel="prev" title="FLUX">
-                FLUX <i class="fa fa-chevron-right"></i>
+              <a href="/blog/2019/09/24/QGISGeoHey/" rel="prev" title="QGIS火星坐标转换插件的使用方法">
+                QGIS火星坐标转换插件的使用方法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -493,10 +512,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                <a href="/blog/tags/index.html">
+                
                   <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">标签</span>
-                </a>
+                
               </div>
             
 
@@ -543,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mysql-分区"><span class="nav-number">1.</span> <span class="nav-text">Mysql 分区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看是否支持分区"><span class="nav-number">1.1.</span> <span class="nav-text">查看是否支持分区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分区介绍"><span class="nav-number">1.2.</span> <span class="nav-text">分区介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除添加分区表"><span class="nav-number">1.3.</span> <span class="nav-text">删除添加分区表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子分区"><span class="nav-number">1.4.</span> <span class="nav-text">子分区</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -581,7 +600,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
@@ -638,6 +657,8 @@
 
 
 
+  
+
 
 
   
@@ -673,6 +694,11 @@
   
   
     <script type="text/javascript" src="/blog/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+  
+  
+    <script id="ribbon" type="text/javascript" size="90" alpha="0.6" zindex="-1" src="/blog/lib/canvas-ribbon/canvas-ribbon.js"></script>
   
 
 
