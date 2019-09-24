@@ -12,7 +12,7 @@
   {% include '_third-party/analytics/index.swig' %}
   <style>
     body{
-      background: url("/images/bg.jpg");
+      background: url("/blog/images/bg.jpg");
     }
   </style>
 </head>
