@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/blog/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/blog/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/blog/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/blog/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/blog/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/blog/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="QGIS火星坐标转换插件的使用方法我们都知道在日常使用中，根据国家测绘局的规定，需要使用国家测绘局制定的GCJ02坐标系统，而该坐标系统是在原始的WGS84的经纬度坐标上经过一系列的非线性运算得到的，而百度在GCJ02坐标系上又进行了一次偏移，形成了百度09坐标系，因此在国内常用的坐标系有三套：WGS84，GCJ02，BD09，其三者的转换关系如下图所示。  但是在我们日常的数据处理中经常碰到各种">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QGIS火星坐标转换插件的使用方法">
+<meta property="og:url" content="http://www.yungyuweb.xyz/blog/2019/09/23/QGISGeoHey/index.html">
+<meta property="og:site_name" content="YungyuBlog">
+<meta property="og:description" content="QGIS火星坐标转换插件的使用方法我们都知道在日常使用中，根据国家测绘局的规定，需要使用国家测绘局制定的GCJ02坐标系统，而该坐标系统是在原始的WGS84的经纬度坐标上经过一系列的非线性运算得到的，而百度在GCJ02坐标系上又进行了一次偏移，形成了百度09坐标系，因此在国内常用的坐标系有三套：WGS84，GCJ02，BD09，其三者的转换关系如下图所示。  但是在我们日常的数据处理中经常碰到各种">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://pic1.zhimg.com/50/v2-280bbed487cf68e58f633d73f906068a_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-6290c7e95b3846fb9e3bbe5bd9dcf9b4_hd.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/50/v2-e3bf17ef93fb415f258999ec81eb00f9_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/50/v2-3dda9c2ceef45777b2335e6e774343ef_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-d9ea91e6ad26aeec7f194491fe39bf3d_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/50/v2-77a659aae5ef6947c2bc59052a9b77a4_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/50/v2-8475e7c5616afef1c8c24d40f543a70d_hd.jpg">
+<meta property="og:updated_time" content="2019-09-23T06:42:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="QGIS火星坐标转换插件的使用方法">
+<meta name="twitter:description" content="QGIS火星坐标转换插件的使用方法我们都知道在日常使用中，根据国家测绘局的规定，需要使用国家测绘局制定的GCJ02坐标系统，而该坐标系统是在原始的WGS84的经纬度坐标上经过一系列的非线性运算得到的，而百度在GCJ02坐标系上又进行了一次偏移，形成了百度09坐标系，因此在国内常用的坐标系有三套：WGS84，GCJ02，BD09，其三者的转换关系如下图所示。  但是在我们日常的数据处理中经常碰到各种">
+<meta name="twitter:image" content="https://pic1.zhimg.com/50/v2-280bbed487cf68e58f633d73f906068a_hd.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/blog/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.yungyuweb.xyz/blog/2019/09/23/QGISGeoHey/">
+
+
+
+
+
+  <title>QGIS火星坐标转换插件的使用方法 | YungyuBlog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<!--<script src="https://cdn.bootcss.com/canvas-nest.js/2.0.4/canvas-nest.js"></script>-->
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/blog/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YungyuBlog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/blog/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/blog/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/blog/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/blog/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-game">
+          <a href="http://www.yungyuweb.xyz/game" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-gamepad"></i> <br>
+            
+            游戏
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yungyuweb.xyz/blog/blog/2019/09/23/QGISGeoHey/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yungyu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/blog/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YungyuBlog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">QGIS火星坐标转换插件的使用方法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-23T06:45:59+00:00">
+                2019-09-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2019/09/23/QGISGeoHey/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/blog/2019/09/23/QGISGeoHey/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="QGIS火星坐标转换插件的使用方法"><a href="#QGIS火星坐标转换插件的使用方法" class="headerlink" title="QGIS火星坐标转换插件的使用方法"></a>QGIS火星坐标转换插件的使用方法</h2><p>我们都知道在日常使用中，根据国家测绘局的规定，需要使用国家测绘局制定的GCJ02坐标系统，而该坐标系统是在原始的WGS84的经纬度坐标上经过一系列的非线性运算得到的，而百度在GCJ02坐标系上又进行了一次偏移，形成了百度09坐标系，因此在国内常用的坐标系有三套：WGS84，GCJ02，BD09，其三者的转换关系如下图所示。</p>
+<p><img src="https://pic1.zhimg.com/50/v2-280bbed487cf68e58f633d73f906068a_hd.jpg" alt="image"></p>
+<p>但是在我们日常的数据处理中经常碰到各种坐标系的数据，在不同数据间相互转换着实麻烦， 为了方便大家在各种坐标之间互相转换，我们极海提供了一个三者之间坐标互相转换的QGIS插件，支持点、线、面、多点、多线、多面，具体安装方法如下：</p>
+<ol>
+<li>打开QGIS后，到菜单plugins中选择Manage and Instal Plugins… 在打开的窗口中输入：<strong>geohey</strong>，即可找到<strong>GeoHey Toolbox</strong>，在右下角选择<strong>install plugin</strong>即可安装成功。</li>
+</ol>
+<p><img src="https://pic2.zhimg.com/50/v2-6290c7e95b3846fb9e3bbe5bd9dcf9b4_hd.jpg" alt="image"></p>
+<ol start="2">
+<li>安装成功后到<strong>installed</strong>中勾选前面的插件前面的复选框，将插件加载到QGIS中。</li>
+</ol>
+<p><img src="https://pic1.zhimg.com/50/v2-e3bf17ef93fb415f258999ec81eb00f9_hd.jpg" alt="image"></p>
+<ol start="3">
+<li>到菜单processing中选择勾选<strong>Toolbox</strong>，打开<strong>processing toolbox</strong>面板。然后打开processing菜单中的<strong>Options</strong>，找到Providers。再打开下面的<strong>GeoHey Toolbox</strong>，勾选<strong>Activate</strong>，即可在右侧的processing toolbox面板看到GeoHey Toolbox提供的算法。</li>
+</ol>
+<p><img src="https://pic3.zhimg.com/50/v2-3dda9c2ceef45777b2335e6e774343ef_hd.jpg" alt="image"></p>
+<p>图中红色的是<strong>偏移后的GCJ02坐标系</strong>，绿色的是<strong>未偏移的WGS84坐标系。</strong></p>
+<p><img src="https://pic2.zhimg.com/50/v2-d9ea91e6ad26aeec7f194491fe39bf3d_hd.jpg" alt="image"></p>
+<p>如果出现在下面的错误：</p>
+<p><img src="https://pic4.zhimg.com/50/v2-77a659aae5ef6947c2bc59052a9b77a4_hd.jpg" alt="image"></p>
+<p>请将Providers中的<strong>GRASS commands</strong>中的GRASS folder目录设置为空，重启QGIS即可。</p>
+<p><img src="https://pic2.zhimg.com/50/v2-8475e7c5616afef1c8c24d40f543a70d_hd.jpg" alt="image"></p>
+<p>转载：文/ sshuair<br>url: <a href="https://zhuanlan.zhihu.com/p/30504809" target="_blank" rel="noopener">link</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2019/09/23/MysqlPartition/" rel="next" title="Mysql 分区">
+                <i class="fa fa-chevron-left"></i> Mysql 分区
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2019/09/23/Webpack+React/" rel="prev" title="Webpack+React简单创建">
+                Webpack+React简单创建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/blog/images/avatar.png" alt="Yungyu">
+            
+              <p class="site-author-name" itemprop="name">Yungyu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/blog/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/blog/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jhx314" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:yungyuchiang94@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#QGIS火星坐标转换插件的使用方法"><span class="nav-number">1.</span> <span class="nav-text">QGIS火星坐标转换插件的使用方法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yungyu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/blog/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/blog/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/blog/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/blog/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/blog/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
