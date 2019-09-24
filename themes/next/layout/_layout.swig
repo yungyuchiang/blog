@@ -10,6 +10,11 @@
   {% include '_partials/head.swig' %}
   <title>{% block title %}{% endblock %}</title>
   {% include '_third-party/analytics/index.swig' %}
+  <style>
+    body{
+      background: url("/images/bg.jpg");
+    }
+  </style>
 </head>
 
 <!--<script src="https://cdn.bootcss.com/canvas-nest.js/2.0.4/canvas-nest.js"></script>-->
