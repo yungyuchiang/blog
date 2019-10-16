@@ -2,6 +2,7 @@ title: Jvm内存模型
 ---
 
 # 运行时数据
+
 ![jvm](http://www.yungyuweb.xyz/blog/images/jvm/jvm.png)
 ## 堆
 1. JVM中最大内存空间，被所有内存共享，几乎所有对象和数组都分配到堆中
@@ -39,6 +40,7 @@ title: Jvm内存模型
 2. Java虚拟机栈用来管理Java函数的调用，而本地方法栈用来管理本地方法（C语言实现）的调用
 
 # JVM运行原理
+
 ```
 public class JVMCase {
     // 常量
