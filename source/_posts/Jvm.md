@@ -93,3 +93,5 @@ class Student {
     * sayHello方法属于对象jvmCase, 此时sayHello方法入栈，并调用栈中Student引用调用堆中的Studen对象
 4. 调用静态方法print
     * print方法属于JVMcase类，从静态方法中获取后放入到栈中，通过Student引用调用堆中的Student对象。
+
+引用：[Java性能 -- JVM内存模型](http://zhongmingmao.me/2019/09/07/java-performance-jvm-memory-model/)
