@@ -2,7 +2,7 @@ title: Jvm内存模型
 ---
 
 # 运行时数据
-
+![jvm](http://www.yungyuweb.xyz/blog/images/jvm/jvm.png)
 ## 堆
 1. JVM中最大内存空间，被所有内存共享，几乎所有对象和数组都分配到堆中
 2. 堆被分为老年代和新生代。
