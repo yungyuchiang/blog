@@ -1,4 +1,9 @@
 title: Jvm内存模型
+tags:
+  - JVM
+categories:
+  - JVM
+date: 2019-10-16 09:54:00
 ---
 
 # 运行时数据
